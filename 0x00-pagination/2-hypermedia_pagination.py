@@ -54,7 +54,7 @@ class Server:
         has_next_page = page < total_pages
         has_prev_page = page > 1
         return {
-            "page_size" : page_size,
+            "page_size": page_size,
             "page": page,
             "data": data,
             "next_page": page + 1 if has_next_page else None,
