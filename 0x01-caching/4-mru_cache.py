@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""LIFO caching"""
+"""FIFO caching"""
 from base_caching import BaseCaching
+from collections import OrderedDict
 
 
-class LIFOCache(BaseCaching):
+class MRUCache(BaseCaching):
     """Inherits from base caching"""
     def __init__(self):
         """Class constructor"""
@@ -13,7 +14,7 @@ class LIFOCache(BaseCaching):
         """Updates dictionary values"""
         if key is not None and item is not None:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                evicted_key = next(reversed(self.cache_data))
+                evicted_key = list(self.cache_data.keys())[-1]
                 print("DISCARD:", evicted_key)
                 self.cache_data.pop(evicted_key)
             self.cache_data[key] = item
@@ -23,4 +24,9 @@ class LIFOCache(BaseCaching):
         if key is None:
             return None
         result = self.cache_data.get(key, None)
+        if result is not None:
+            """Move the accessed key to the end to
+            represent it as the most recently use"""
+            del self.cache_data[key]
+            self.cache_data[key] = result
         return result
