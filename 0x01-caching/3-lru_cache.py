@@ -23,4 +23,9 @@ class LRUCache(BaseCaching):
         if key is None:
             return None
         result = self.cache_data.get(key, None)
+        if result is not None:
+            """Move the accessed key to the end to
+            represent it as the most recently use"""
+            del self.cache_data[key]
+            self.cache_data[key] = result
         return result
