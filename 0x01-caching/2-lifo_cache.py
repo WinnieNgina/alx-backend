@@ -13,7 +13,7 @@ class LIFOCache(BaseCaching):
         """Updates dictionary values"""
         if key is not None and item is not None:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                evicted_key = next(reversed(self.cache_data))
+                evicted_key = list(self.cache_data.keys())[-1]
                 print("DISCARD:", evicted_key)
                 self.cache_data.pop(evicted_key)
             self.cache_data[key] = item
