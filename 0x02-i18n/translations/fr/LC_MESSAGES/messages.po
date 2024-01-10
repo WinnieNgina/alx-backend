@@ -23,7 +23,7 @@ msgid "Welcome to Holberton"
 msgstr ""
 
 #: templates/1-index.html:9 templates/2-index.html:9
-msgid "Hello world"
+msgid "Hello world!"
 msgstr ""
 
 #: templates/3-index.html:6
