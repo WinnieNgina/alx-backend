@@ -3,6 +3,7 @@
 from flask import Flask, render_template, g, request
 from flask_babel import Babel
 import pytz
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -86,7 +87,8 @@ def get_timezone():
 @app.route('/')
 def index():
     """Returns index.html"""
-    return render_template('5-index.html')
+    current_time = datetime.now().strftime("%b %d, %Y, %I:%M:%S %p")
+    return render_template('index.html', current_time=current_time)
 
 
 if __name__ == '__main__':
